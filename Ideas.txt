@@ -1,0 +1,36 @@
+Can you hold still ÄãÊÖ¶¶Âð
+	PREREQ: how precise is the hardware???
+	Aim a gun? 50m target wall, 100m, 500m, 1km, 5km...
+	"sniper rank"
+	make a frame for laptop and gun precision positioning. Calibrate on a fixed position relative to the computer. 
+
+Gyroscopic Theremin Gloves
+
+Tuning Fork Fighters
+	Fighter fight with huge tuning forks in both hands. Make music. 
+
+Anger and Fear
+	Use haertrate sensor, and maybe pupil size tracker
+	put a fake hat with LEDs and wires all over
+	It's like 8 fen yin fu jiang, but you play with emotions
+	You have to calm down before your next move. 
+	Anger is jump, Fear is crouch. 
+	program doesn't distinguish between anger and fear. Just a bluff. 
+
+Antichamber Exhibit with Looking Glass
+	Use refraction to make a cube. Looking into different faces, see different objects in the cube. 
+
+Theremin-like instrument with air pressure sensor
+	+ 2 gloves with guroscopes. Wind instrument sound. 
+
+rube goldberg logic circuit
+
+[can't] Minecraft piston painter
+	Beads of black and white rolling down
+	Servo controls the emission of beads
+
+card swiping game
+	Credit: Zane
+	You control with card swipers. 
+	multi player. imagine cards say "jump", "move right", "halt"...
+	unlock cards as you go?

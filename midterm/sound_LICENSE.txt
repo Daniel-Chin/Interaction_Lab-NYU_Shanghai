@@ -1,0 +1,9 @@
+./SoundEffect/gong.wav is from
+	https://freesound.org/people/GowlerMusic/sounds/266566/
+by 
+	GowlerMusic
+under
+	Creative Commons License. 
+
+Winning sound effect (several files) includes gong.wav, 
+with modification: Fade out. 

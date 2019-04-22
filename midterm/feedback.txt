@@ -1,0 +1,4 @@
+Poten to adjust difficulty (rotateServo speed)
+Cover reflective surface (revserse boards)
+Strong ATTACK sound effect to nail the winning moment
+Arduino A0 A1 loose

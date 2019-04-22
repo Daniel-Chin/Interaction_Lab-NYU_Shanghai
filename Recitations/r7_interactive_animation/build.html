@@ -1,0 +1,213 @@
+<html><body>
+<span style="font-size: 12pt;">Instructor: <b>Marcele</b>&nbsp;</span><br />
+<span style="font-size: 12pt;">&nbsp;</span><br />
+<span style="font-size: 12pt;">This is a write up for Interaction Lab SP18 <a href="https://wp.nyu.edu/shanghai-ima-interaction-lab/recitation-7-processing-animation/">Recitation on Processing Animation</a> on Apr 12, 2019.&nbsp;</span><br />
+<span style="font-size: 12pt;">&nbsp;</span><br />
+<span style="font-size: 12pt;">[video width="272" height="272" mp4="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/04/hw_demo.mp4"][/video]&nbsp;</span><br />
+<span style="font-size: 12pt;">[video width="272" height="272" mp4="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/04/r7_demo.mp4"][/video]&nbsp;</span><br />
+<span style="font-size: 12pt;">&nbsp;</span><br />
+<h2 style="font-size: 24pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> What I learnt&nbsp;</h2><hr />
+<span style="font-size: 12pt;">I learnt how to work with the <a href="https://processing.org/reference/PVector.html">PVector class</a>. It was really convenient for what I was trying to do.&nbsp;</span><br />
+<span style="font-size: 12pt;">&nbsp;</span><br />
+<h2 style="font-size: 24pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Interesting thing&nbsp;</h2><hr />
+<span style="font-size: 12pt;">From line 64 to line 73 of InkLeak.pde, I used Linear Algebra to smartly orient the special effect. It was such an enjoyable moment when I pieced together my half-unsure Math knowledge from high school, and see my program correctly automated.&nbsp;</span><br />
+<code><br />
+class Node {<br />
+&nbsp;&nbsp;// mode code omitted<br />
+&nbsp;&nbsp;public void orientWith(Node that) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;PVector perpendi = new PVector(this.y - that.y, that.x - this.x);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;if (<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PVector.fromAngle(this.angle).dot(perpendi)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* PVector.fromAngle(that.angle).dot(perpendi)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;< 0<br />
+&nbsp;&nbsp;&nbsp;&nbsp;) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.angle += PI;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;}<br />
+}<br />
+<span style="font-size: 12pt;"></code>&nbsp;</span><br />
+<span style="font-size: 12pt;">&nbsp;</span><br />
+<span style="font-size: 12pt;">Yet another proof of the famous saying, "Math is power".&nbsp;</span><br />
+<span style="font-size: 12pt;">&nbsp;</span><br />
+<h2 style="font-size: 24pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Source Code&nbsp;</h2><hr />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Homework&nbsp;</h3>
+<code><br />
+static final float SPEED = .05;<br />
+static final float WEIGHT = .06;<br />
+float progress = 0f;<br />
+<br />
+void setup() {<br />
+&nbsp;&nbsp;size(600, 600);<br />
+&nbsp;&nbsp;colorMode(HSB, 100);<br />
+&nbsp;&nbsp;rectMode(CENTER);<br />
+}<br />
+void draw() {<br />
+&nbsp;&nbsp;strokeWeight(WEIGHT);<br />
+&nbsp;&nbsp;scale(width, height);<br />
+&nbsp;&nbsp;background(0, 0, 100);<br />
+&nbsp;&nbsp;progress += SPEED;<br />
+&nbsp;&nbsp;float _size = (sin(progress) + 1f) * .3 + .15;<br />
+&nbsp;&nbsp;stroke(int(progress * 30) % 100, 100, 100);<br />
+&nbsp;&nbsp;PVector position = new PVector(mouseX / float(width), mouseY / float(height));<br />
+&nbsp;&nbsp;float radius = _size / 2f + WEIGHT / 2f;<br />
+&nbsp;&nbsp;if (position.x < radius) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;position.x = radius;<br />
+&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;if (position.x + radius > 1f) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;position.x = 1f - radius;<br />
+&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;if (position.y < radius) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;position.y = radius;<br />
+&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;if (position.y + radius > 1f) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;position.y = 1f - radius;<br />
+&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;rect(position.x, position.y, _size, _size);<br />
+&nbsp;&nbsp;strokeWeight(.03);<br />
+&nbsp;&nbsp;line(position.x, position.y, mouseX / float(width), mouseY / float(height));<br />
+}<br />
+<span style="font-size: 12pt;"></code>&nbsp;</span><br />
+<span style="font-size: 12pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Recitation creation&nbsp;</h3>
+<span style="font-size: 12pt;">I used two sketch files.&nbsp;</span><br />
+<span style="font-size: 12pt;"><b>InkLeak.pde</b> is a library I wrote for an eariler lecture, see my <a href="https://github.com/Daniel-Chin/Processing/blob/master/InkLeakLib/InkLeak.pde">Github</a>.&nbsp;</span><br />
+<span style="font-size: 12pt;"><b>r7_interactive_animation.pde</b> is the main code. The content is here:&nbsp;</span><br />
+<code><br />
+final int RADIUS = 66;<br />
+final float NOISE_MAG = .1f;<br />
+final float NOISE_SPEED = .02f;<br />
+<br />
+float rotation = 0f;<br />
+float V = 4;<br />
+PVector pos;<br />
+float orient;<br />
+float noise_i = 0;<br />
+int echo_i = 0;<br />
+String echo_mode = "high";<br />
+Timer t;<br />
+int counter = 5;<br />
+boolean legacy = true;<br />
+boolean legacy_phase = false;<br />
+<br />
+void setup() {<br />
+&nbsp;&nbsp;size(713, 577);<br />
+&nbsp;&nbsp;background(#233333);<br />
+&nbsp;&nbsp;pos = new PVector(width/2, height/2);<br />
+&nbsp;&nbsp;orient = PI / 4f;<br />
+&nbsp;&nbsp;t = new Timer();<br />
+&nbsp;&nbsp;background(255);<br />
+}<br />
+<br />
+void draw() {<br />
+&nbsp;&nbsp;strokeWeight(1);<br />
+&nbsp;&nbsp;float target_rotation = new PVector(mouseX - width/2, mouseY - height/2).heading();<br />
+&nbsp;&nbsp;if (target_rotation - rotation > PI) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;rotation += PI*2f;<br />
+&nbsp;&nbsp;} else if (rotation - target_rotation > PI) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;rotation -= PI*2f;<br />
+&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;rotation = rotation * .99 + target_rotation * .01;<br />
+&nbsp;&nbsp;translate(width / 2, height / 2);<br />
+&nbsp;&nbsp;rotate(rotation);<br />
+&nbsp;&nbsp;scale(0.5);<br />
+&nbsp;&nbsp;noise_i += NOISE_SPEED;<br />
+&nbsp;&nbsp;orient += (noise(noise_i) - .5f) * NOISE_MAG;<br />
+&nbsp;&nbsp;PVector v = PVector.fromAngle(orient);<br />
+&nbsp;&nbsp;v.mult(V);<br />
+&nbsp;&nbsp;pos.add(v);<br />
+&nbsp;&nbsp;if (pos.x < 0 + RADIUS || pos.x >= width - RADIUS) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;orient = PI - orient;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;pos.x = .95 * pos.x + .05 * (width/2);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;acc();<br />
+&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;if (pos.y < 0 + RADIUS || pos.y >= height - RADIUS) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;orient = - orient;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;pos.y = .95 * pos.y + .05 * (width/2);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;acc();<br />
+&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;while (orient < 0) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;orient += 2 * PI;<br />
+&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;while (orient > PI * 2) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;orient -= 2 * PI;<br />
+&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;noStroke();<br />
+&nbsp;&nbsp;fill(255);<br />
+&nbsp;&nbsp;ellipse(pos.x, pos.y, RADIUS * 2, RADIUS * 2);<br />
+&nbsp;&nbsp;stroke(#233333);<br />
+&nbsp;&nbsp;if (legacy) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;clsWithEcho();<br />
+&nbsp;&nbsp;} else {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echoClear(echo_mode);<br />
+&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;/*while (t.spin(1000)) {<br />
+&nbsp;&nbsp; counter --;<br />
+&nbsp;&nbsp; text(str(counter), width/2, height/2);<br />
+&nbsp;&nbsp; }*/<br />
+&nbsp;&nbsp;stroke(255);<br />
+&nbsp;&nbsp;strokeWeight(10);<br />
+&nbsp;&nbsp;noFill();<br />
+&nbsp;&nbsp;rect(0, 0, width, height);<br />
+}<br />
+<br />
+void acc() {<br />
+&nbsp;&nbsp;counter --;<br />
+&nbsp;&nbsp;if (counter == 0) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;switch (echo_mode) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;case "low":<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo_mode = "high";<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background(255);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V = 4;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;counter = 5;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;case "high":<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo_mode = "low";<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background(255);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V = 7;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;counter = 9;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;if (legacy_phase) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;legacy = ! legacy;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;legacy_phase = false;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;legacy_phase = true;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;if (counter % 2 == 0) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;fill(#3EFFB6);<br />
+&nbsp;&nbsp;} else {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;fill(#FFC0CB);<br />
+&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;textSize(1300 * pow(2.718, float(-counter) / 2.5f));<br />
+&nbsp;&nbsp;text(str(counter), width/2 - 128, height * .5);<br />
+}<br />
+<br />
+final int ECHO = 20;<br />
+final int ECHO_MODE = 0;<br />
+int echoPhase = 0;<br />
+void clsWithEcho() {<br />
+&nbsp;&nbsp;if (ECHO_MODE == 0) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;int times = int(height / ECHO);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;int r;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;for (int i = 0; i < times; i ++) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r = int(random(height));<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line(0, r, width, r);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;} else if (ECHO_MODE == 1) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echoPhase ++;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;if (echoPhase > ECHO) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echoPhase = 0;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;for (int i = echoPhase; i < height; i += ECHO) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line(0, i, width, i);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;} else if (ECHO_MODE == 2) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;int times = int(height / ECHO);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;for (int i = 0; i < times; i ++) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line(int(random(width)), int(random(height)), int(random(width)), int(random(height)));<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;}<br />
+}<br />
+<span style="font-size: 12pt;"></code>&nbsp;</span><br />
+</body></html>

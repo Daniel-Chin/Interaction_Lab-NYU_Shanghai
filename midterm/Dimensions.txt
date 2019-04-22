@@ -1,0 +1,8 @@
+380 length
+120 innder width
+20.2 servo width
+37 servo length
+5 degree servo tilt
+
+28
+7
