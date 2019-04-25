@@ -1,11 +1,11 @@
-My previous definition of interaction is:  
-Giving and receiving attention.  
+My previous definition of interaction was:  
+<b>Giving and receiving attention.</b>  
 My argument was, if something can be ignored by the user, even if it was useful, there was still no interaction with the user.  
 
-Especially when I was writing the blog post regarding my midterm project, I realized the inconsistency between what Tristan and I made and my definition of interaction. The Laser Arcade was not so much about the attention between players and the machine, but rather, more about the attention between the two players. The game has its own noticable and memorable characteristics, but the main experiece is focused on competing with your friend.  
+Especially when I was writing the blog post regarding my midterm project, I realized the inconsistency between what [Tristan](https://wp.nyu.edu/shanghai-ima-documentation/wp-admin/edit.php?post_type=post&author=41309) and I made and my definition of interaction. The Laser Arcade was not so much about the attention between players and the machine, but rather, more about the attention between the two players. The game has its own noticeable and memorable characteristics, but the main experience is focused on competing with your friend.  
 
 Hence, I expand my definition of interaction:  
-A machine giving and receiving attention with human, or a machine helping humans give and receive attention.  
+<b>A machine giving and receiving attention with human, or a machine helping humans give and receive attention.</b>  
 
 During the process of formulating the definition, I researched some claimed-interactive projects (mostly games). Here are two of them that I will talk about.  
 
@@ -13,4 +13,4 @@ During the process of formulating the definition, I researched some claimed-inte
 However, I don't think this game is interactive (even if is has "interaction" in its name). The game is creative, concise, meaningful, and fun to play, but does not give or receive attention. It is only as interactive as any ordinary game.  
 
 You play [Keep Talking](http://www.rrrrthats5rs.com/games/keep-talking/) with your voice. This game predates the popular scream-control games ([YASUHATI](https://play.google.com/store/apps/details?id=jp.ne.freem.YASUHATI) and [OHC](https://baddreams.itch.io/onehandclapping)) for many years. You move objects in the game by manipulating the loudness and pitch of your voice. Each object responds to your loudness and pitch in its own way.  
-This game is closely related to the expansion of my definition of interaction. 
+This game is closely related to the expansion of my definition of interaction. Keep Talking, back in [2006](http://www.rrrrthats5rs.com/about/), was an innovative game that breaks the invisible boundary between people in the same room. For example, if you play this game in your house, your family will definitely notice your "singing", and it will quickly turn into a familty experience. This lines up with my new definition.  
