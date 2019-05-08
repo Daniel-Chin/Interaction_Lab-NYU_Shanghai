@@ -1,0 +1,5 @@
+Nick and MPU 6050:
+	didn't work.. solder.. works! 
+
+Math sheet:
+	Linear algebra, 3d orientation
