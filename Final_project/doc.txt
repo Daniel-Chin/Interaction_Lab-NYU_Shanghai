@@ -3,3 +3,6 @@ Nick and MPU 6050:
 
 Math sheet:
 	Linear algebra, 3d orientation
+
+Gives NaN for unknown reason:
+	Turns out acos(1.0000000001) = NaN!!!
