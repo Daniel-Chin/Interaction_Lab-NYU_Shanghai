@@ -1,7 +1,9 @@
-static final int COM = 0;
+static final int COM = 6;
+static final boolean DEBUG_NO_ARDUINO = true;
 static final int MAX_PITCH = 84;
 static final int MIN_PITCH = 60;
 static final String IP = "10.209.0.168";
+// static final String IP = "192.168.43.170";
 static final int PORT = 2341;
 
 // Code is modified from https://github.com/ElectronicCats/mpu6050/tree/master/examples/MPU6050_DMP6
@@ -55,26 +57,32 @@ Quaternion offsetQuat = new Quaternion(1, 0, 0, 0);
 
 int pressure = 0;
 
+boolean is_expert = true;
+
 void setup() {
   // fullScreen();
-  size(400, 400); ////
+  size(600, 600); ////
   gfx = new ToxiclibsSupport(this);
 
-  printArray(Serial.list());
-  String port_name = Serial.list()[COM];
-  port = new Serial(this, port_name, 38400);
-  port.clear();
-  println("Serial established. ");
+  if (! DEBUG_NO_ARDUINO) {
+    printArray(Serial.list());
+    String port_name = Serial.list()[COM];
+    port = new Serial(this, port_name, 38400);
+    port.clear();
+    println("Serial established. ");
+  }
   
   client = new Client(this, IP, PORT);
   println("Socket established. ");
 
-  serialWaitFor("Send any character to begin DMP programming and demo:");
-  // send single character to trigger DMP init/start
-  // (expected by MPU6050_DMP6 example Arduino sketch)
-  delay(100);
-  port.write('r');
-  serialWaitFor("LET US START");
+  if (! DEBUG_NO_ARDUINO) {
+    serialWaitFor("Send any character to begin DMP programming and demo:");
+    // send single character to trigger DMP init/start
+    // (expected by MPU6050_DMP6 example Arduino sketch)
+    delay(100);
+    port.write('r');
+    serialWaitFor("LET US START");
+  }
   port_ready = true;
 }
 
@@ -147,6 +155,7 @@ void zeroGyro() {
 }
 
 void heartBeat() {
+  if (DEBUG_NO_ARDUINO) return;
   if (millis() - last_heartbeat > 1000) {
     // resend single character to trigger DMP init/start
     // in case the MPU is halted/reset while applet is running
@@ -158,28 +167,34 @@ void heartBeat() {
 void draw() {
   heartBeat();
   
+  float dynamic = map(pressure, 100900, 101500, 0f, 1f);
+  dynamic = constrain(dynamic, 0f, 1f);
+  client.write("d(");
+  client.write(str(dynamic));
+  client.write(")\n");
+
   Quaternion effective_quat = offsetQuat.multiply(quat);
   if (Float.isNaN(effective_quat.x)) {
     effective_quat = new Quaternion(1, 0, 0, 0);
     println("NaN handled");
   }
-  float pitch = map(effective_quat.y, -.5, .3, MIN_PITCH, MAX_PITCH);
-  pitch = constrain(pitch, MIN_PITCH, MAX_PITCH);
-  float dynamic = map(pressure, 100900, 101500, 0f, 1f);
-  dynamic = constrain(dynamic, 0f, 1f);
-  
-  client.write("d(");
-  client.write(str(dynamic));
-  client.write(")\n");
+
+  float pitch;
+  if (is_expert) {
+    pitch = map(effective_quat.y, -.5, .3, MIN_PITCH, MAX_PITCH);
+    pitch = constrain(pitch, MIN_PITCH, MAX_PITCH);
+  } else {
+    pitch = 60;////
+  }
   client.write("p(");
   client.write(str(round(pitch)));
   client.write(")\n");
   
   background(255);
   drawAxis();
+  pushMatrix();
   scale(width, height);
-}
-
-void mousePressed() {
-  zeroGyro();
+  drawPianoAndArrow(pitch, dynamic);
+  popMatrix();
+  drawButtons();
 }

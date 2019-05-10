@@ -2,7 +2,7 @@ from socket import socket
 from local_ip import getLocalIP  
 
 PORT = 2341
-TRUSTED_IP = ['10.209.9.163', '127.0.0.1', 'localhost']
+TRUSTED_IP = ['10.209.9.163', '127.0.0.1', 'localhost', '10.209.5.137', '192.168.43.245']
 
 server = None
 

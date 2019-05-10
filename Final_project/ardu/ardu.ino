@@ -24,9 +24,9 @@
   ===============================================
 */
 
-#define X_OFFSET -88
-#define Y_OFFSET 5
-#define Z_OFFSET -93
+#define X_OFFSET -132
+#define Y_OFFSET 3
+#define Z_OFFSET -151
 
 #include <Adafruit_BMP085.h>
 #include "I2Cdev.h"

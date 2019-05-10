@@ -19,7 +19,7 @@ void update() {
   GyZ = (Wire.read() << 8 | Wire.read()); // 0x47 (GYRO_ZOUT_H) & 0x48 (GYRO_ZOUT_L)
 }
 
-int N = 4096;
+int N = 2048;
 void loop() {
   long sX = 0; long sY = 0; long sZ = 0;
   for (int i = 0; i < N; i ++) {

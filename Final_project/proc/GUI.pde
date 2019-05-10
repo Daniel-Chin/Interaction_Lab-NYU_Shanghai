@@ -34,10 +34,11 @@ void drawDebug(float pitch, float dynamic) {
   text("n_packets " + str(n_packets), 0, 200, width, 300);
 }
 
-static final float AXIS_RATIO = .2;
+static final float AXIS_RATIO = .3;
 static final float AXIS_VERTICAL_PADDING = .2;
 void drawAxis() {
   fill(0);
+  stroke(0);
   textSize(48);
   textAlign(CENTER, CENTER);
   float AXIS_WIDTH = width * AXIS_RATIO;
@@ -66,21 +67,40 @@ void drawAxis() {
   endShape();
   
   strokeWeight(4);
-  line(AXIS_MID, TOP, AXIS_MID, BOTTOM);
+  line(AXIS_MID, TOP + ARROW_SIZE, AXIS_MID, BOTTOM - ARROW_SIZE);
 }
 
-static final float PIANO_RATIO = .5;
-static final float PIANO_VERTICAL_PADDING = 0f;
+static final float PIANO_RATIO = .4;
+static final float PIANO_VERTICAL_PADDING = .07;
 static final float PIANO_BLACK_RATIO = .65;
-void drawPianoAndArrow() {
+static final float POINTER_PADDING = .1;
+static final float POINTER_RATIO = -.6;
+float previous_pitch = 60;
+int commitment = 0;
+void drawPianoAndArrow(float pitch, float dynamic) {
+  if (DEBUG_NO_ARDUINO) {
+    pitch = map(mouseY, PIANO_VERTICAL_PADDING * height, (1 - PIANO_VERTICAL_PADDING) * height, MAX_PITCH, MIN_PITCH);
+  }
+  float saved_pitch = pitch;
+  if (abs(pitch - previous_pitch) > 1f) {
+    if (commitment < 3) {
+      commitment ++;
+      pitch = previous_pitch;
+    } else {
+      previous_pitch = pitch;
+    }
+  } else {
+    commitment = 0;
+    previous_pitch = pitch;
+  }
+
   pushMatrix();
   translate(PIANO_RATIO, PIANO_VERTICAL_PADDING);
   scale(1f - AXIS_RATIO - PIANO_RATIO, 1f - 2 * PIANO_VERTICAL_PADDING);
+  strokeWeight(.01);
   
   int n_keys = MAX_PITCH - MIN_PITCH + 1;
   float key_height = 1f / n_keys;
-  stroke(0);
-  strokeWeight(2);
   int remainder;
   boolean black_or_white;
   float key_mid;
@@ -93,17 +113,26 @@ void drawPianoAndArrow() {
         black_or_white = true;
       }
     } else {
-      if (remainder % 2 == 0) {
         black_or_white = true;
       }
     }
     
     // draw the rect
-    fill(black_or_white ? 0 : 255);
+    if (round(pitch) == i) {
+      fill(black_or_white ? 100 : 200);
+    } else {
+      fill(black_or_white ? 0 : 255);
+    }
     key_top = key_height * (MAX_PITCH - i);
+    stroke(0);
     rect(0, key_top, PIANO_BLACK_RATIO, key_height);
-    
+    if (! black_or_white) {
+      noStroke();
+      rect(0, key_top, PIANO_BLACK_RATIO + g.strokeWeight * 4, key_height - g.strokeWeight);
+    }
+
     // draw the line
+    stroke(0);
     if (black_or_white) {
       key_mid = key_top + key_height * .5;
       line(PIANO_BLACK_RATIO, key_mid, 1f, key_mid);
@@ -111,7 +140,59 @@ void drawPianoAndArrow() {
       line(PIANO_BLACK_RATIO, key_top, 1f, key_top);
     }
   }
+  line(0, 0, 1, 0);
+  line(0, 1, 1, 1);
+  line(0, 0, 0, 1);
+  line(1, 0, 1, 1);
   
-  
+  translate(- POINTER_PADDING, 0);
+  scale(- POINTER_RATIO, 1f);
+  fill(255 * dynamic);
+  float pointer_y = map(pitch, MIN_PITCH, MAX_PITCH, 1 - key_height / 2, key_height / 2);
+  beginShape();
+  vertex(0, pointer_y);
+  vertex(- 1, pointer_y + .05);
+  vertex(- 1, pointer_y - .05);
+  vertex(0, pointer_y);
+  endShape();
+
   popMatrix();
+}
+
+float b1x = .05;
+float b1y = .1;
+float b1w = .3;
+float b1h = .1;
+float b2x = .05;
+float b2y = .3;
+float b2w = .3;
+float b2h = .1;
+void drawButtons() {
+  fill(255);
+  stroke(0);
+  strokeWeight(5);
+  rect(b1x * width, b1y * height, b1w * width, b1h * height, 10);
+  rect(b2x * width, b2y * height, b2w * width, b2h * height, 10);
+  fill(0);
+  textSize(20);
+  text("calibrate", b1x * width, b1y * height, b1w * width, b1h * height);
+  text("expert mode: " + (is_expert ? "on" : "off"), b2x * width, b2y * height, b2w * width, b2h * height);
+}
+void mousePressed() {
+  float x = mouseX / float(width);
+  float y = mouseY / float(height);
+  if (
+    b1x < x && x < b1x + b1w
+  &&
+    b1y < y && y < b1y + b1h
+  ) {
+    zeroGyro();
+  }
+  if (
+    b2x < x && x < b2x + b2w
+  &&
+    b2y < y && y < b2y + b2h
+  ) {
+    is_expert = ! is_expert;
+  }
 }
