@@ -70,85 +70,20 @@ void drawAxis() {
   line(AXIS_MID, TOP + ARROW_SIZE, AXIS_MID, BOTTOM - ARROW_SIZE);
 }
 
-static final float PIANO_RATIO = .4;
-static final float PIANO_VERTICAL_PADDING = .07;
-static final float PIANO_BLACK_RATIO = .65;
+static final float POINTER_RATIO = .5;
 static final float POINTER_PADDING = .1;
-static final float POINTER_RATIO = -.6;
-float previous_pitch = 60;
-int commitment = 0;
 void drawPianoAndArrow(float pitch, float dynamic) {
   if (DEBUG_NO_ARDUINO) {
     pitch = map(mouseY, PIANO_VERTICAL_PADDING * height, (1 - PIANO_VERTICAL_PADDING) * height, MAX_PITCH, MIN_PITCH);
   }
-  float saved_pitch = pitch;
-  if (abs(pitch - previous_pitch) > 1f) {
-    if (commitment < 3) {
-      commitment ++;
-      pitch = previous_pitch;
-    } else {
-      previous_pitch = pitch;
-    }
-  } else {
-    commitment = 0;
-    previous_pitch = pitch;
-  }
 
   pushMatrix();
-  translate(PIANO_RATIO, PIANO_VERTICAL_PADDING);
-  scale(1f - AXIS_RATIO - PIANO_RATIO, 1f - 2 * PIANO_VERTICAL_PADDING);
+  translate(POINTER_RATIO, 0);
+  scale(1f - AXIS_RATIO - POINTER_RATIO, 1f);
   strokeWeight(.01);
-  
-  int n_keys = MAX_PITCH - MIN_PITCH + 1;
-  float key_height = 1f / n_keys;
-  int remainder;
-  boolean black_or_white;
-  float key_mid;
-  float key_top;
-  for (int i = MIN_PITCH; i <= MAX_PITCH; i ++) {
-    remainder = i % 12;
-    black_or_white = false;
-    if (remainder < 5) {
-      if (remainder % 2 == 1) {
-        black_or_white = true;
-      }
-    } else {
-        black_or_white = true;
-      }
-    }
-    
-    // draw the rect
-    if (round(pitch) == i) {
-      fill(black_or_white ? 100 : 200);
-    } else {
-      fill(black_or_white ? 0 : 255);
-    }
-    key_top = key_height * (MAX_PITCH - i);
-    stroke(0);
-    rect(0, key_top, PIANO_BLACK_RATIO, key_height);
-    if (! black_or_white) {
-      noStroke();
-      rect(0, key_top, PIANO_BLACK_RATIO + g.strokeWeight * 4, key_height - g.strokeWeight);
-    }
-
-    // draw the line
-    stroke(0);
-    if (black_or_white) {
-      key_mid = key_top + key_height * .5;
-      line(PIANO_BLACK_RATIO, key_mid, 1f, key_mid);
-    } else if (remainder == 11 || remainder == 4) {
-      line(PIANO_BLACK_RATIO, key_top, 1f, key_top);
-    }
-  }
-  line(0, 0, 1, 0);
-  line(0, 1, 1, 1);
-  line(0, 0, 0, 1);
-  line(1, 0, 1, 1);
-  
-  translate(- POINTER_PADDING, 0);
-  scale(- POINTER_RATIO, 1f);
   fill(255 * dynamic);
-  float pointer_y = map(pitch, MIN_PITCH, MAX_PITCH, 1 - key_height / 2, key_height / 2);
+  
+  float pointer_y = map(pitch, MIN_PITCH, MAX_PITCH, .9, .1);
   beginShape();
   vertex(0, pointer_y);
   vertex(- 1, pointer_y + .05);

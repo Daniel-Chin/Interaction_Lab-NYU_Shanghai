@@ -1,7 +1,7 @@
-static final int COM = 6;
+static final int COM = 0;
 static final boolean DEBUG_NO_ARDUINO = true;
-static final int MAX_PITCH = 84;
-static final int MIN_PITCH = 60;
+static final int MAX_PITCH = 12;
+static final int MIN_PITCH = -12;
 static final String IP = "10.209.0.168";
 // static final String IP = "192.168.43.170";
 static final int PORT = 2341;
@@ -181,10 +181,10 @@ void draw() {
 
   float pitch;
   if (is_expert) {
-    pitch = map(effective_quat.y, -.5, .3, MIN_PITCH, MAX_PITCH);
+    pitch = map(effective_quat.y, -.3, .3, MIN_PITCH, MAX_PITCH);
     pitch = constrain(pitch, MIN_PITCH, MAX_PITCH);
   } else {
-    pitch = 60;////
+    pitch = 0;////
   }
   client.write("p(");
   client.write(str(round(pitch)));
@@ -194,7 +194,7 @@ void draw() {
   drawAxis();
   pushMatrix();
   scale(width, height);
-  drawPianoAndArrow(pitch, dynamic);
+  drawArrow(pitch, dynamic);
   popMatrix();
   drawButtons();
 }

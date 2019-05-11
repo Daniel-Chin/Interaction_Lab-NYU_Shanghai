@@ -72,7 +72,7 @@ class Dynamic:
         mouse.release(mouse.LEFT)
 
 class Ableton:
-    KEY_MAP = 'awsedftgyhuj'
+    KEY_MAP = 'asdfghj'
     def __init__(self):
         self.octave = 5
         self.held_down = None
@@ -82,9 +82,9 @@ class Ableton:
         if pitch != self.last_pitch:
             self.last_pitch = pitch
             self.release()
-            octave = pitch // 12
+            octave = (pitch // 7) + 5
             self.setOctave(octave)
-            key = self.KEY_MAP[pitch % 12]
+            key = self.KEY_MAP[pitch % 7]
             keyboard.press(key)
             self.held_down = key
     
