@@ -82,7 +82,7 @@ void drawPianoAndArrow(float pitch, float dynamic) {
   scale(1f - AXIS_RATIO - POINTER_RATIO, 1f);
   strokeWeight(.01);
   fill(255 * dynamic);
-  
+
   float pointer_y = map(pitch, MIN_PITCH, MAX_PITCH, .9, .1);
   beginShape();
   vertex(0, pointer_y);
@@ -129,5 +129,6 @@ void mousePressed() {
     b2y < y && y < b2y + b2h
   ) {
     is_expert = ! is_expert;
+    onExpertChange();
   }
 }

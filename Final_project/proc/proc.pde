@@ -2,6 +2,8 @@ static final int COM = 0;
 static final boolean DEBUG_NO_ARDUINO = true;
 static final int MAX_PITCH = 12;
 static final int MIN_PITCH = -12;
+static final int MAX_PTH = 9;
+static final int MIN_PTH = -9;
 static final String IP = "10.209.0.168";
 // static final String IP = "192.168.43.170";
 static final int PORT = 2341;
@@ -32,6 +34,11 @@ THE SOFTWARE.
 ===============================================
 */
 
+static final int[] AM_CHORD = {0, 2, 5};
+static final int[] F_CHORD = {0, 3, 5};
+static final int[] C_CHORD = {0, 2, 4};
+static final int[] G_CHORD = {1, 4, 6};
+
 import processing.serial.*;
 import toxi.geom.*;
 import toxi.processing.*;
@@ -60,8 +67,7 @@ int pressure = 0;
 boolean is_expert = true;
 
 void setup() {
-  // fullScreen();
-  size(600, 600); ////
+  size(600, 600);
   gfx = new ToxiclibsSupport(this);
 
   if (! DEBUG_NO_ARDUINO) {
@@ -74,6 +80,8 @@ void setup() {
   
   client = new Client(this, IP, PORT);
   println("Socket established. ");
+
+  bgm = new Bgm(this);
 
   if (! DEBUG_NO_ARDUINO) {
     serialWaitFor("Send any character to begin DMP programming and demo:");
@@ -179,12 +187,31 @@ void draw() {
     println("NaN handled");
   }
 
-  float pitch;
+  float pitch = 0;
+  float op = map(effective_quat.y, -.3, .3, 0, 1);
+  op = constrain(op, 0, 1);
   if (is_expert) {
-    pitch = map(effective_quat.y, -.3, .3, MIN_PITCH, MAX_PITCH);
-    pitch = constrain(pitch, MIN_PITCH, MAX_PITCH);
+    pitch = map(op, 0, 1, MIN_PITCH, MAX_PITCH);
   } else {
-    pitch = 0;////
+    int pth = round(map(op, 0, 1, MIN_PTH, MAX_PITCH));
+    int octave = pth / 3;
+    int identity = pth % 3;
+    int remainder;
+    switch (bgm.update()) {
+    case "Am":
+      remainder = AM_CHORD[identity];
+      break;
+    case "F":
+      remainder = F_CHORD[identity];
+      break;
+    case "C":
+      remainder = C_CHORD[identity];
+      break;
+    case "G":
+      remainder = G_CHORD[identity];
+      break;
+    }
+    pitch = octave * 7 + remainder;
   }
   client.write("p(");
   client.write(str(round(pitch)));
@@ -197,4 +224,12 @@ void draw() {
   drawArrow(pitch, dynamic);
   popMatrix();
   drawButtons();
+}
+
+void onExpertChange() {
+  if (is_expert) {
+    bgm.stop();
+  } else {
+    bgm.play();
+  }
 }
