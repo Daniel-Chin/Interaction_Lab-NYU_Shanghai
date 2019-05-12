@@ -4,7 +4,8 @@ static final int MAX_PITCH = 12;
 static final int MIN_PITCH = -12;
 static final int MAX_PTH = 9;
 static final int MIN_PTH = -9;
-static final String IP = "10.209.0.168";
+static final String IP = "192.168.0.182";
+// static final String IP = "10.209.0.168";
 // static final String IP = "192.168.43.170";
 static final int PORT = 2341;
 
@@ -54,7 +55,6 @@ ToxiclibsSupport gfx;
 
 Serial port;                         // The serial port
 int last_heartbeat = 0;
-boolean port_ready = false;
 int n_packets = 0;
 
 Client client; 
@@ -63,8 +63,8 @@ Quaternion quat = new Quaternion(1, 0, 0, 0);
 Quaternion offsetQuat = new Quaternion(1, 0, 0, 0);
 
 int pressure = 0;
-
 boolean is_expert = true;
+boolean ready = false;
 
 void setup() {
   size(600, 600);
@@ -78,20 +78,15 @@ void setup() {
     println("Serial established. ");
   }
   
+  println("Connecting python server...");
   client = new Client(this, IP, PORT);
   println("Socket established. ");
 
-  bgm = new Bgm(this);
-
-  if (! DEBUG_NO_ARDUINO) {
-    serialWaitFor("Send any character to begin DMP programming and demo:");
-    // send single character to trigger DMP init/start
-    // (expected by MPU6050_DMP6 example Arduino sketch)
-    delay(100);
-    port.write('r');
-    serialWaitFor("LET US START");
-  }
-  port_ready = true;
+  background(255);
+  fill(0);
+  textSize(50);
+  textAlign(CENTER, CENTER);
+  text("Loading music, \nPlease wait...", 0, 0, width, height);
 }
 
 void serialWaitFor(String keyword) {
@@ -108,7 +103,7 @@ void serialWaitFor(String keyword) {
 String serial_buffer = "";
 void serialEvent(Serial port) {
   last_heartbeat = millis();
-  if (! port_ready) return;
+  if (! ready) return;
   n_packets = 0;
   String received = null;
   String temp_str = "Really Impossible To Accidentally Match";
@@ -173,30 +168,51 @@ void heartBeat() {
 }
 
 void draw() {
+  if (! ready) {
+    bgm = new Bgm(this);
+    println("Music loaded");
+
+    if (! DEBUG_NO_ARDUINO) {
+      println("Waiting for arduino confirmation...");
+      serialWaitFor("Send any character to begin DMP programming and demo:");
+      // send single character to trigger DMP init/start
+      // (expected by MPU6050_DMP6 example Arduino sketch)
+      delay(100);
+      port.write('r');
+      serialWaitFor("LET US START");
+    }
+    ready = true;
+  }
   heartBeat();
   
   float dynamic = map(pressure, 100900, 101500, 0f, 1f);
   dynamic = constrain(dynamic, 0f, 1f);
-  client.write("d(");
-  client.write(str(dynamic));
-  client.write(")\n");
 
   Quaternion effective_quat = offsetQuat.multiply(quat);
   if (Float.isNaN(effective_quat.x)) {
     effective_quat = new Quaternion(1, 0, 0, 0);
     println("NaN handled");
   }
-
-  float pitch = 0;
   float op = map(effective_quat.y, -.3, .3, 0, 1);
   op = constrain(op, 0, 1);
+
+  if (DEBUG_NO_ARDUINO) {
+    dynamic = 1;
+    op = constrain(1 - mouseY / float(height), 0, 1);
+  }
+
+  client.write("d(");
+  client.write(str(dynamic));
+  client.write(")\n");
+
+  float pitch = 0;
   if (is_expert) {
     pitch = map(op, 0, 1, MIN_PITCH, MAX_PITCH);
   } else {
     int pth = round(map(op, 0, 1, MIN_PTH, MAX_PITCH));
     int octave = pth / 3;
-    int identity = pth % 3;
-    int remainder;
+    int identity = pth - octave;
+    int remainder = 0;
     switch (bgm.update()) {
     case "Am":
       remainder = AM_CHORD[identity];

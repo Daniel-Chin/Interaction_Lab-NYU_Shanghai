@@ -72,9 +72,9 @@ void drawAxis() {
 
 static final float POINTER_RATIO = .5;
 static final float POINTER_PADDING = .1;
-void drawPianoAndArrow(float pitch, float dynamic) {
+void drawArrow(float pitch, float dynamic) {
   if (DEBUG_NO_ARDUINO) {
-    pitch = map(mouseY, PIANO_VERTICAL_PADDING * height, (1 - PIANO_VERTICAL_PADDING) * height, MAX_PITCH, MIN_PITCH);
+    pitch = map(mouseY, 0, height, MAX_PITCH, MIN_PITCH);
   }
 
   pushMatrix();

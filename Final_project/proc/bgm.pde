@@ -23,7 +23,7 @@ class Bgm {
     file.pause();
   }
 
-  static String[] CHORD_PROGRESSION = {"Am", "F", "C", "G"};
+  String[] CHORD_PROGRESSION = {"Am", "F", "C", "G"};
   String update() {
     float time = (millis() - when_started) * .001;
     if (time > END) {

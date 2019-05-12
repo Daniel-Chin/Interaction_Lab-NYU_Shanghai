@@ -67,6 +67,7 @@ class Dynamic:
     def acquire(self):
         mouse.move(dynamic.x, dynamic.bottom)
         mouse.press(mouse.LEFT)
+        self.last_level = 0
     
     def release(self):
         mouse.release(mouse.LEFT)
