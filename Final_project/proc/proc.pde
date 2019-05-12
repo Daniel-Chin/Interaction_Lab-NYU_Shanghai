@@ -1,9 +1,9 @@
 static final int COM = 0;
-static final boolean DEBUG_NO_ARDUINO = true;
+static final boolean DEBUG_NO_ARDUINO = false;
 static final int MAX_PITCH = 12;
 static final int MIN_PITCH = -12;
-static final int MAX_PTH = 9;
-static final int MIN_PTH = -9;
+static final int MAX_PTH = 6;
+static final int MIN_PTH = -6;
 static final String IP = "192.168.0.182";
 // static final String IP = "10.209.0.168";
 // static final String IP = "192.168.43.170";
@@ -197,7 +197,7 @@ void draw() {
   op = constrain(op, 0, 1);
 
   if (DEBUG_NO_ARDUINO) {
-    dynamic = 1;
+    dynamic = mousePressed ? 1 : 0;
     op = constrain(1 - mouseY / float(height), 0, 1);
   }
 
@@ -209,8 +209,8 @@ void draw() {
   if (is_expert) {
     pitch = map(op, 0, 1, MIN_PITCH, MAX_PITCH);
   } else {
-    int pth = round(map(op, 0, 1, MIN_PTH, MAX_PITCH));
-    int octave = pth / 3;
+    int pth = round(map(op, 0, 1, MIN_PTH, MAX_PTH));
+    int octave = floor(pth / 3f);
     int identity = pth - octave * 3;
     int remainder = 0;
     switch (bgm.update()) {

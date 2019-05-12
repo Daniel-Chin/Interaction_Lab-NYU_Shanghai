@@ -10,6 +10,7 @@ PAGE = 4096
 
 dynamic = None
 ableton = None
+saved_pitch = None
 
 def main():
     global dynamic, ableton
@@ -59,10 +60,15 @@ class Dynamic:
         return lock
     
     def dragTo(self, level):
-        if abs(level - self.last_level) > self.SENSITIVITY:
+        if level < .01 or abs(level - self.last_level) > self.SENSITIVITY:
             self.last_level = level
             y = dynamic.top * (level) + dynamic.bottom * (1 - level)
             mouse.move(dynamic.x, y)
+            if level < .01:
+                ableton.release()
+            else:
+                if ableton.held_down is None:
+                    ableton.play(saved_pitch)
     
     def acquire(self):
         mouse.move(dynamic.x, dynamic.bottom)
@@ -82,6 +88,7 @@ class Ableton:
     def play(self, pitch):
         if pitch != self.last_pitch:
             self.last_pitch = pitch
+            saved_pitch = pitch
             self.release()
             octave = (pitch // 7) + 5
             self.setOctave(octave)
@@ -102,7 +109,7 @@ class Ableton:
     def release(self):
         if self.held_down is not None:
             keyboard.release(self.held_down)
-        self.held_down = None
+            self.held_down = None
 
 def handle(s):
     try:
