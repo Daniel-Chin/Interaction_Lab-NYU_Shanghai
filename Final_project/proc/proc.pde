@@ -211,7 +211,7 @@ void draw() {
   } else {
     int pth = round(map(op, 0, 1, MIN_PTH, MAX_PITCH));
     int octave = pth / 3;
-    int identity = pth - octave;
+    int identity = pth - octave * 3;
     int remainder = 0;
     switch (bgm.update()) {
     case "Am":

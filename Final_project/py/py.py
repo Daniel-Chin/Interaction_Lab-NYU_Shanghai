@@ -41,7 +41,7 @@ class Dynamic:
         lock = Lock()
         lock.acquire()
         def onClick(event):
-            if isinstance(event, mouse.ButtonEvent) and event.event_type == 'down':
+            if isinstance(event, mouse.ButtonEvent) and event.event_type == 'up':
                 x, y = mouse.get_position()
                 recorded_clicks.append({'x': x, 'y': y})
                 print(recorded_clicks[-1])
