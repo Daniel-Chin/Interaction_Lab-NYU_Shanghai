@@ -4,13 +4,15 @@ import sys
 from threading import Lock
 from time import sleep
 from network import connect
+import traceback
 
 STRICT = False
 PAGE = 4096
 
+NOTE_ON_THRESHOLD = .01
+
 dynamic = None
 ableton = None
-saved_pitch = None
 
 def main():
     global dynamic, ableton
@@ -60,15 +62,15 @@ class Dynamic:
         return lock
     
     def dragTo(self, level):
-        if level < .01 or abs(level - self.last_level) > self.SENSITIVITY:
+        if level < NOTE_ON_THRESHOLD or abs(level - self.last_level) > self.SENSITIVITY:
             self.last_level = level
             y = dynamic.top * (level) + dynamic.bottom * (1 - level)
             mouse.move(dynamic.x, y)
-            if level < .01:
+            if level < NOTE_ON_THRESHOLD:
                 ableton.release()
             else:
                 if ableton.held_down is None:
-                    ableton.play(saved_pitch)
+                    ableton.play(ableton.last_pitch)
     
     def acquire(self):
         mouse.move(dynamic.x, dynamic.bottom)
@@ -84,17 +86,21 @@ class Ableton:
         self.octave = 5
         self.held_down = None
         self.last_pitch = None
+        self.last_pitch = 0
     
     def play(self, pitch):
-        if pitch != self.last_pitch:
+        diff = pitch != self.last_pitch
+        if diff:
             self.last_pitch = pitch
-            saved_pitch = pitch
-            self.release()
-            octave = (pitch // 7) + 5
-            self.setOctave(octave)
-            key = self.KEY_MAP[pitch % 7]
-            keyboard.press(key)
-            self.held_down = key
+        if dynamic.last_level >= NOTE_ON_THRESHOLD:
+            if diff or self.held_down is None:
+                self.last_pitch = pitch
+                self.release()
+                octave = (pitch // 7) + 5
+                self.setOctave(octave)
+                key = self.KEY_MAP[pitch % 7]
+                keyboard.press(key)
+                self.held_down = key
     
     def setOctave(self, octave):
         delta = octave - self.octave
@@ -131,7 +137,14 @@ def handleLine(line):
     if not STRICT:
         line = line.replace('d', 'dynamic.dragTo').replace('p', 'ableton.play')
     # print(line)
-    exec(line)
+    try:
+        exec(line)
+    except:
+        traceback.print_exc()
+        print('Problem line:', line)
+        while True:
+            sleep(5)
+            print('Waiting for ^C...')
 
 if __name__ == '__main__':
     main()
