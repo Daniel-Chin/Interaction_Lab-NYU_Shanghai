@@ -148,15 +148,21 @@ void loop() {
   // if programming failed, don't try to do anything
   if (!is_dmp_ready) return;
 
-  if (mpu_interrupt) {
-    mpu_interrupt = false;
-    fifo_count = mpu.getFIFOCount();
-  }
+  fifo_count = mpu.getFIFOCount();
   if (fifo_count >= packet_size) {
-    readMpu();
+    relayMpu();
   }
   
   // other stuff
+  Serial.print("pres\t");
+  Serial.println(bmp.readPressure());
+}
+
+void relayMpu() {
+  mpu.getFIFOBytes(fifo_buffer, packet_size);
+
+  // display quaternion values in easy matrix form: w x y z
+  mpu.dmpGetQuaternion(&q, fifo_buffer);
   Serial.print("quat\t");
   Serial.print(q.w);
   Serial.print("\t");
@@ -166,36 +172,10 @@ void loop() {
   Serial.print("\t");
   Serial.println(q.z);
 
-  Serial.print("pres\t");
-  Serial.println(bmp.readPressure());
-}
+  mpu.resetFIFO();
+  mpu_interrupt = false;
 
-void readMpu() {
-  mpu_int_status = mpu.getIntStatus();
-
-  // get current FIFO count
-  fifo_count = mpu.getFIFOCount();
-
-  // check for overflow (this should never happen unless our code is too inefficient)
-  if ((mpu_int_status & _BV(MPU6050_INTERRUPT_FIFO_OFLOW_BIT)) || fifo_count >= 1024) {
-    // reset so we can continue cleanly
-    mpu.resetFIFO();
-    fifo_count = mpu.getFIFOCount();
-    Serial.println(F("err\tFIFO overflow!"));
-
-    // otherwise, check for DMP data ready interrupt (this should happen frequently)
-  } else if (mpu_int_status & _BV(MPU6050_INTERRUPT_DMP_INT_BIT)) {
-    // read a packet from FIFO
-    mpu.getFIFOBytes(fifo_buffer, packet_size);
-
-    mpu.resetFIFO();
-    fifo_count = mpu.getFIFOCount();
-
-    // display quaternion values in easy matrix form: w x y z
-    mpu.dmpGetQuaternion(&q, fifo_buffer);
-
-    // blink LED to indicate activity
-    blink_state = ! blink_state;
-    digitalWrite(LED_PIN, blink_state);
-  }
+  // blink LED to indicate activity
+  blink_state = ! blink_state;
+  digitalWrite(LED_PIN, blink_state);
 }

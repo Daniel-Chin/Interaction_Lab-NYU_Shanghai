@@ -1,9 +1,11 @@
 static final int COM = 0;
 static final boolean DEBUG_NO_ARDUINO = false;
-static final int MAX_PITCH = 12;
+static final int MIN_PRESSURE = 101200;
+static final int MAX_PRESSURE = 101400;
 static final int MIN_PITCH = -12;
-static final int MAX_PTH = 6;
+static final int MAX_PITCH = 12;
 static final int MIN_PTH = -6;
+static final int MAX_PTH = 6;
 static final String IP = "192.168.0.182";
 // static final String IP = "10.209.0.168";
 // static final String IP = "192.168.43.170";
@@ -164,6 +166,7 @@ void heartBeat() {
     // in case the MPU is halted/reset while applet is running
     port.write('r');
     last_heartbeat = millis();
+    println("Warning: heartbeat sent");
   }
 }
 
@@ -185,7 +188,7 @@ void draw() {
   }
   heartBeat();
   
-  float dynamic = map(pressure, 100900, 101500, 0f, 1f);
+  float dynamic = map(pressure, MIN_PRESSURE, MAX_PRESSURE, 0f, 1f);
   dynamic = constrain(dynamic, 0f, 1f);
 
   Quaternion effective_quat = offsetQuat.multiply(quat);
@@ -240,6 +243,11 @@ void draw() {
   drawArrow(pitch, dynamic);
   popMatrix();
   drawButtons();
+  fill(0);
+  textSize(15);
+  text("packets dumped: " + str(n_packets - 1), 0, 0, width, 80);
+  text("Quat: " + quat.toString(), 0, 80, width, 80);
+  
 }
 
 void onExpertChange() {
