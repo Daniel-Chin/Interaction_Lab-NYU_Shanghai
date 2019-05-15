@@ -32,6 +32,7 @@ def main():
 
 class Dynamic:
     SENSITIVITY = .05
+    SUSTAIN = .01   # I know, this should be per millis, but per packet works okay
     
     def __init__(self):
         self.x = None
@@ -63,6 +64,7 @@ class Dynamic:
     
     def dragTo(self, level):
         if level < NOTE_ON_THRESHOLD or abs(level - self.last_level) > self.SENSITIVITY:
+            level = max(level, self.last_level - self.SUSTAIN)
             self.last_level = level
             y = dynamic.top * (level) + dynamic.bottom * (1 - level)
             mouse.move(dynamic.x, y)

@@ -6,3 +6,5 @@ Math sheet:
 
 Gives NaN for unknown reason:
 	Turns out acos(1.0000000001) = NaN!!!
+
+Altitude change requires recallibration of air pressure sensor

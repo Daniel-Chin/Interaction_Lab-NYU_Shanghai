@@ -151,6 +151,8 @@ void loop() {
   fifo_count = mpu.getFIFOCount();
   if (fifo_count >= packet_size) {
     relayMpu();
+  } else if (fifo_count <= 0) {
+    mpu.resetFIFO();
   }
   
   // other stuff
