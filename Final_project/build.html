@@ -1,0 +1,245 @@
+<html><body>
+<span style="font-size: 20pt;">Instructor: Marcela&nbsp;</span><br />
+<span style="font-size: 20pt;">Group Partner: <a href="https://wp.nyu.edu/shanghai-ima-documentation/wp-admin/edit.php?post_type=post&author=41309">Tristan</a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Here you will learn about <b>Simplinstrument</b>, our group's final project for <a href="https://wp.nyu.edu/shanghai-ima-interaction-lab/">Interaction Lab SP19</a> .&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">You control the electronic musical instrument by moving your hand while blowing into a mouthpiece.&nbsp;</span><br />
+<span style="font-size: 20pt;">[video width="272" height="480" mp4="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/tristan.mp4"][/video]&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h2 style="font-size: 24pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Design&nbsp;</h2><hr />
+<span style="font-size: 20pt;">Music instruments are difficult.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Piano is difficult.&nbsp;</span><br />
+<span style="font-size: 20pt;">Flute is difficult.&nbsp;</span><br />
+<span style="font-size: 20pt;">Saxophone is difficult.&nbsp;</span><br />
+<span style="font-size: 20pt;">French horn is difficult.&nbsp;</span><br />
+<span style="font-size: 20pt;">Violin is difficult.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">However, whistle is easy.&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/download.jpg"><img class="size-medium wp-image-796" tabindex="-1" src="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/download.jpg" alt="a coach whistle" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">The harder you blow, the louder it will sound. Simple and intuitive.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">In the same way, you control the <a href="https://vi-control.net/community/threads/the-difference-between-dynamics-cc-1-and-expression-cc-11.58127/">Dynamics level</a> (loudness) of <b>Simplinstrument</b> by blowing in to a mouthpiece.&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://media.giphy.com/media/Q60pnFP9oZ5o3ULRM5/giphy.gif"><img class="size-medium wp-image-796" tabindex="-1" src="https://media.giphy.com/media/Q60pnFP9oZ5o3ULRM5/giphy.gif" alt="A box enclosing BMP085" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">In the mouthpiece is an air pressure sensor, <a href="https://www.adafruit.com/product/391">BMP085</a>. The harder you blow, the higher the air pressure in the mouthpiece will be.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">You control the pitch by rotating you hand up and down. The ring on your finger contains a gyroscope, <a href="https://www.invensense.com/products/motion-tracking/6-axis/mpu-6050/">MPU6050</a>. It senses the angular acceleration of your finger to calculate the absolute orientation of your hand.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;"><b>Simplinstrument</b> is meant for musicians and <a href="https://www.google.com/search?q=normal+people">non-musicians</a>. The goal is for musicians to find it usable and expressive, and for non-musicians to play music without any training.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h2 style="font-size: 24pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Scaffolding Mode&nbsp;</h2><hr />
+<span style="font-size: 20pt;"><b>Simplinstrument</b> offer two modes: Expert Mode and Scaffolding Mode.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">In <b>Expert Mode</b>, you have access to all white keys (<a href="https://www.youtube.com/watch?v=8InrO9Vzhfk">diatonic</a>).&nbsp;</span><br />
+<span style="font-size: 20pt;">We tried making all keys available (chromatic), but that turned <b>Simplinstrument</b> into a difficult instrument. So we removed the black keys.&nbsp;</span><br />
+<span style="font-size: 20pt;">Only providing the <a href="https://www.youtube.com/watch?v=8InrO9Vzhfk">pentatonic scale</a>, however, is not "expert" enough for Expert Mode.&nbsp;</span><br />
+<span style="font-size: 20pt;">So we settled with all white keys.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;"><b>Scaffolding Mode</b> is especially nice.&nbsp;</span><br />
+<span style="font-size: 20pt;">A background music plays, whose chord progression is <a href="https://www.youtube.com/watch?v=Wc4FV3dL3sQ">Am-F-C-G</a>. You have access to all pitches within the chord that's currently playing in the background. In other words, no matter what you do, you always make harmonies.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">The Scaffolding Mode turned out to sound way better than we envisioned. Random hand movements created melodies that sounded highly professional.&nbsp;</span><br />
+<span style="font-size: 20pt;">[video width="272" height="480" mp4="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/tristan.mp4"][/video]&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h2 style="font-size: 24pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> User Feedbacks&nbsp;</h2><hr />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> "Make sure the texture of the sound is beautiful"&nbsp;</h3>
+<span style="font-size: 20pt;">Indeed! Texture matters. We chose a synthesizer from <a href="https://www.spitfireaudio.com/labs/">Spitfire Audio Labs</a>. It's free; but it's awesome.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> "Which way does this ring go onto my finger?"&nbsp;</h3>
+<span style="font-size: 20pt;">Good question. It matters because otherwise the gyroscope would give flipped readings. We cleared the confusion by adding a Ring Platform.&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://media.giphy.com/media/QAgOr5guif0rAw87rX/giphy.gif"><img class="size-medium wp-image-796" tabindex="-1" src="https://media.giphy.com/media/QAgOr5guif0rAw87rX/giphy.gif" alt="hand take ring off from the platform" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> "Remove the visual interface"&nbsp;</h3>
+<span style="font-size: 20pt;">At first we had a visual interface to help musicians pinpoint their hand orientation to their desired pitch. It didn't quite work out.&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://media.giphy.com/media/WRL1fZgxohLz0KklH4/giphy.gif"><img class="size-medium wp-image-796" tabindex="-1" src="https://media.giphy.com/media/WRL1fZgxohLz0KklH4/giphy.gif" alt="Sheldon playing the instrument" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Marcela suggested we remove the visual and blindfold the player. That's exactly what we did.&nbsp;</span><br />
+<span style="font-size: 20pt;">[video width="272" height="480" mp4="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/daniel.mp4"][/video]&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> "My hand can't bend that low"&nbsp;</h3>
+<span style="font-size: 20pt;">We changed the finger orientation input range from (-.5, .3) to (-.3, .3)&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> "Why not have multi player symphony?"&nbsp;</h3>
+<span style="font-size: 20pt;">That can be achieved by making two copies of <b>Simplinstrument</b>.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> "Allow other body parts to also control the music"&nbsp;</h3>
+<span style="font-size: 20pt;">This is actually what I really want to have in the project. It is only not implemented because of time constrain.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> "Add a tutorial"&nbsp;</h3>
+<span style="font-size: 20pt;">No. We should keep things <b>simple</b> and let the player explorer on their own.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h2 style="font-size: 24pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Problems and how we solved them&nbsp;</h2><hr />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> MPU6050 didn't work!&nbsp;</h3>
+<span style="font-size: 20pt;">We asked Nick. Nick told us to solder the PINs. It worked.&nbsp;</span><br />
+<span style="font-size: 20pt;">I guess one does not simply plug jumper cables into breakout board PINs.&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/391-00.jpg"><img class="size-medium wp-image-796" tabindex="-1" src="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/391-00.jpg" alt="Photo of breakout board with PINs" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> The gyroscope outputs angular acceleration, but we need absolute orientation!&nbsp;</h3>
+<span style="font-size: 20pt;">I tried to write an algorithm to integrate the acceleration into orientation. A lot of Linear Algebra:&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/math_0.jpg"><img class="size-medium wp-image-796" tabindex="-1" src="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/math_0.jpg" alt="Draft paper with math" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">And I wrote this code: <a href="https://github.com/Daniel-Chin/Interaction_Lab-NYU_Shanghai/blob/master/Final_project/gyro_math/gyro_math.ino">Github link</a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">It worked!&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://media.giphy.com/media/RJVL1P6tKTwAQ4CXR0/giphy.gif"><img class="size-medium wp-image-796" tabindex="-1" src="https://media.giphy.com/media/RJVL1P6tKTwAQ4CXR0/giphy.gif" alt="Processing showing a motion tracking 3D model" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">I optimized the code for performance. In the end, one loop on Arduino Uno takes 2 milliseconds.&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/profiling.jpg"><img class="size-medium wp-image-796" tabindex="-1" src="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/profiling.jpg" alt="code snippet of profiling" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">However, any sudden movement of the gyroscope would make the algorithm accumulate error. Damn... The time step was still too large.&nbsp;</span><br />
+<span style="font-size: 20pt;">Looks like we had to rely on the <i>DMP</i>!!!&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;"><i>DMP</i> refers to the Digital Motion Processor mounted on MPU6050. DMP does fast calculations and outputs the absolute orientation of the chip. Now you ask: "Isn't that exactly what you need? Why do all the Linear Algebra yourself when you can use DMP?" To answer that, let me quote <a href="https://playground.arduino.cc/Main/MPU-6050/">Arduino Playground</a>: "For this DMP, InvenSense has a discouragement policy, by not supplying enough information how to program the DMP. However, some have used reverse engineering to capture firmware."&nbsp;</span><br />
+<span style="font-size: 20pt;">That is pretty scary! The last thing a programmer wants is the lack of documentation. This is why DMP was my last resort.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">However, <b>simplinstrument</b> needs a robust input. So I tried working with DMP. Fortunately, <a href="https://github.com/ElectronicCats">Electronic Cats</a> wrote a very helpful <a href="https://github.com/ElectronicCats/mpu6050">library</a>. It worked the first time I tried. The DMP handles sudden movements pretty perfectly.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">The output of DMP is in <a href="https://www.youtube.com/watch?v=d4EgbgTm0Bg">Quaternion</a>. I tried to learn it, but it was too much. I ended up eyeball the four scalers and simply decided to use <code>quat.y</code>.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Every now and then, <i>NaN</i> takes over!&nbsp;</h3>
+<span style="font-size: 20pt;">This was a fun one.&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/isinan.jpg"><img class="size-medium wp-image-796" tabindex="-1" src="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/isinan.jpg" alt="code snippet of NaN checking" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">It took me a long time to fix, because I assumed there was a 0/0. After thorough debugging, the problem became clear:&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">acos(1.0000000001) = NaN!&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">My mind was blown. I marveled over the difference between doing Math on CPU and doing math on paper.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Once known, the problem was easy to fix - A call to <a href="https://www.arduino.cc/reference/en/language/functions/math/constrain/">constrain(x, 0, 1)</a>.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h2 style="font-size: 24pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Technical details that are fun to read&nbsp;</h2><hr />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Plot my exhale&nbsp;</h3>
+<span style="font-size: 20pt;"><a href="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/blow_plot.jpg"><img class="size-medium wp-image-796" tabindex="-1" src="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/blow_plot.jpg" alt="Serial plotter shows readings" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">Air pressure connected to Arduino serial plotter&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> 826 and 1608 are 300 Pa apart&nbsp;</h3>
+<span style="font-size: 20pt;">The air pressure sensor seemed to frequently require recalibrating... We thought we bought a trashy sensor, until we suddenly realized that the Studio and the dorm room are 8 floors different in altitude and hence we should expect a 300 Pa difference every time we test the device in a different location.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> GUI = API: automated mouse clicks in Ableton&nbsp;</h3>
+<span style="font-size: 20pt;">As mentioned earlier, we used Spitfire Audio Labs to synthesize sound.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">The top choice would be to work directly with <a href="https://fileinfo.com/extension/vst">VST files</a> from Spitfire, but I have no idea how to do that.&nbsp;</span><br />
+<span style="font-size: 20pt;">Therefore, we let <a href="https://www.ableton.com/en/">Ableton</a> deal with Spitfire for us. In Ableton Live, you can import Spitfire Audio Labs as an instrument.&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/spitfire.png"><img class="size-medium wp-image-796" tabindex="-1" src="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/spitfire.png" alt="screenshot of ableton spitfire plugin" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Okay! Let's use something like "Ableton API" to control Ableton then! Unfortunately, my research yielded no result.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">At that moment, I was reminded of <a href="https://www.youtube.com/watch?v=lIFE7h3m40U">a project of Tom Scott's</a>. Why not use macro/bot to simulate mouse clicks and key presses to control Ableton?&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">And there we have it. I wrote <a href="https://github.com/Daniel-Chin/Interaction_Lab-NYU_Shanghai/blob/master/Final_project/py/py.py">a Python script</a> to use mouse and keyboard to control Ableton GUI. The Python script receives commands from Processing via a TCP socket. Ha! I just <a href="https://en.wikipedia.org/wiki/Pwn">pwned</a> my own laptop! Let's add <a href="https://github.com/Daniel-Chin/Interaction_Lab-NYU_Shanghai/blob/master/Final_project/py/network.py">a firewall</a> to prevent strangers from hijacking my Python script.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Just like this, Ableton became our real-time sound synthesizer, at least for the 22 remaining days of the free trial.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Teach Processing music theory&nbsp;</h3>
+<span style="font-size: 20pt;"><a href="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/teach_proc_music.png"><img class="size-medium wp-image-796" tabindex="-1" src="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/teach_proc_music.png" alt="Code snippet that defines chords" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> I2C infinite wait&nbsp;</h3>
+<span style="font-size: 20pt;">Once in a while, our program froze.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Investigation showed it was Arduino that stopped.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Further investigation showed that whenever an MPU6050 library function was called, there was a slight chance of <i>no return</i>, blocking the Arduino code execution.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Both the air pressure sensor and the gyroscope use <a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C communication protocol</a> with Arduino. Looking into the <a href="https://github.com/ElectronicCats/mpu6050">MPU6050 library code</a>, I found out that they did not enable <code>timeout</code> when they receive bytes from the sensor via I2C.&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/timeout_arg.jpg"><img class="size-medium wp-image-796" tabindex="-1" src="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/timeout_arg.jpg" alt="I2CDev provides a timeout argument" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/timeout_call.jpg"><img class="size-medium wp-image-796" tabindex="-1" src="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/timeout_call.jpg" alt="But mpu library supply no timeout argument" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">I suspect this is the problem. When a bit is missing, Arduino would wait for the 8th bit but the sensor would never send anything, manifesting an infinite wait.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">The only real solution would be to rewrite the library, which I don't want to do. Instead, I just improved cable connection and minimized the number of calls to the library. The less you call, the less probable Arduino will freeze. Yes, sometimes avoiding the problem is the solution.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Note on & note off for ADSR&nbsp;</h3>
+<span style="font-size: 20pt;">Previously, we didn't have <a href="http://www.music-software-development.com/midi-tutorial.html">note on and note off</a>. When you don't blow, a key is pressed down with dynamics = 0. However, that implementation resulted in a less expressive sound texture.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">We added a threshold of air pressure that triggers note on and note off. Now, the pre-programmed ADSR (Attack Decay Sustain Release) of Spitfire Audio can finally be heard.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Gyroscope calibration, the Earth, and the Ring Platform&nbsp;</h3>
+<span style="font-size: 20pt;">A fun thing you will notice if you have a gyroscope: the reading is non-zero even when the gyroscope sits still!&nbsp;</span><br />
+<span style="font-size: 20pt;">I thought, this could be the rotation of the Earth! But it isn't. The numbers don't add up.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">It turned out gyroscopes require calibration. You basically offset the X Y Z angular acceleration reading by a constant value. It's not hard to do: you just let it sit still and take its reading to be the offset.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Our MPU6050 needed frequent recalibrating. Another reason we made the Ring Platform (mentioned above) is for easy recalibrating: we recalibrating it before the player takes the ring from the platform.&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://media.giphy.com/media/QAgOr5guif0rAw87rX/giphy.gif"><img class="size-medium wp-image-796" tabindex="-1" src="https://media.giphy.com/media/QAgOr5guif0rAw87rX/giphy.gif" alt="hand take ring off from the platform" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Synchronize BGM&nbsp;</h3>
+<span style="font-size: 20pt;">Our BGM for Scaffolding Mode is downloaded from <a href="https://baike.baidu.com/item/YouTube">YouTube</a>. After analyzing it in <a href="https://www.audacityteam.org/">Audacity</a>, we discovered there are 3.20000 seconds in a measure. Our Processing sketch basically synchronize with the BGM via <a href="https://github.com/Daniel-Chin/Interaction_Lab-NYU_Shanghai/blob/master/Final_project/proc/bgm.pde">this code</a>.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">"LOOKUP tables make things especially easy." - line 26 in <a href="https://github.com/Daniel-Chin/Interaction_Lab-NYU_Shanghai/blob/master/Final_project/proc/bgm.pde">bgm.pde</a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Sustain&nbsp;</h3>
+<span style="font-size: 20pt;">Tristan noticed that the notes cut off too suddenly! So we added Python-level sustain. Now, breathing does not interrupt your music.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">See line 35 & 67 in <a href="https://github.com/Daniel-Chin/Interaction_Lab-NYU_Shanghai/blob/master/Final_project/py/py.py">py.py</a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h2 style="font-size: 24pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Humans using Simplinstrument&nbsp;</h2><hr />
+<span style="font-size: 20pt;">My original imagination of using <b>simplinstrument</b>:&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://media.giphy.com/media/fuWWOBnnobMeikS2RL/giphy.gif"><img class="size-medium wp-image-796" tabindex="-1" src="https://media.giphy.com/media/fuWWOBnnobMeikS2RL/giphy.gif" alt="Me waving hands" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">How people actually use <b>simplinstrument</b>:&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/Ki.jpg"><img class="size-medium wp-image-796" tabindex="-1" src="https://wp.nyu.edu/shanghai-ima-documentation/wp-content/uploads/sites/13761/2019/05/Ki.jpg" alt="Ki playing the instrument" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://media.giphy.com/media/fubEXJzLvvMB47zG9Z/giphy.gif"><img class="size-medium wp-image-796" tabindex="-1" src="https://media.giphy.com/media/fubEXJzLvvMB47zG9Z/giphy.gif" alt="Rudi playing the instrument" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h2 style="font-size: 24pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Conclusion&nbsp;</h2><hr />
+<span style="font-size: 20pt;">You interact with <b>simplinstrument</b> by letting it help you make music, hear the music you make, and show to people. It does not directly echo with my definition of interaction (giving and receiving attention). It is not emotional or artistic; just a tool for artistic expression.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">If there was more time, we would like to make everything wearable and wireless.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">It feels amazing when your flute respond to your breath. We started out wanting to make the experience of playing the flute more accessible. I think the result is satisfying. If we can enable more people to express more in music, it's worth it.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h2 style="font-size: 24pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Make your Simplinstrument&nbsp;</h2><hr />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Buy these:&nbsp;</h3>
+<span style="font-size: 20pt;">Arduino Uno&nbsp;</span><br />
+<span style="font-size: 20pt;">MPU6050&nbsp;</span><br />
+<span style="font-size: 20pt;">BMP085&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Make these:&nbsp;</h3>
+<span style="font-size: 20pt;">A box to enclose BMP085. Leave two holes for air to come in and go out.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">A ring to fix MPU6050 on. Preferably Velcro, for different finger sizes.&nbsp;</span><br />
+<span style="font-size: 20pt;"><a href="https://media.giphy.com/media/ZbHVlepAv5xItNlwOR/giphy.gif"><img class="size-medium wp-image-796" tabindex="-1" src="https://media.giphy.com/media/ZbHVlepAv5xItNlwOR/giphy.gif" alt="Design of the ring" /></a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Download these&nbsp;</h3>
+<span style="font-size: 20pt;"><a href="https://www.arduino.cc/">Arduino</a>, <a href="https://processing.org/">Processing</a>, and <a href="https://www.python.org/">Python</a>.&nbsp;</span><br />
+<span style="font-size: 20pt;">Ableton Live, Spitfire Audio LABS: Strings.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Wiring&nbsp;</h3>
+<span style="font-size: 20pt;">Connect BMP 085 to Arduino: VIN/VCC - 5V; GND - GND; SCL - A5; SDA - A4&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Connect MPU6050 to Arduino: VIN/VCC - 5V; GND - GND; SCL - A5; SDA - A4; AD0 - GND; INT - 2&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Code&nbsp;</h3>
+<span style="font-size: 20pt;">Download code from <a href="https://github.com/Daniel-Chin/Interaction_Lab-NYU_Shanghai">my Github</a>. All code is in the "final_project" folder.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">You may need to change the <code>TRUSTED_IP</code> list in py/network.py&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">py/ is the project Python code.&nbsp;</span><br />
+<span style="font-size: 20pt;">ardu/ is the project Arduino code.&nbsp;</span><br />
+<span style="font-size: 20pt;">proc/ is the project Processing code.&nbsp;</span><br />
+<span style="font-size: 20pt;">MPU6050_calibrate/ is for calibrating the gyroscope. It outputs the offset.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">The above is all you need. The below is not important.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">BMP085test/ is for testing the air pressure sensor.&nbsp;</span><br />
+<span style="font-size: 20pt;">gyro_math/ is my attempt of tracking motion.&nbsp;</span><br />
+<span style="font-size: 20pt;">MPU6050_full_rotation/ is nonsense.&nbsp;</span><br />
+<span style="font-size: 20pt;">MPU6050_test/ is for testing the gyroscope.&nbsp;</span><br />
+<span style="font-size: 20pt;">QuaternionConjugateTest/ is the code I used to see if "conjugate" meant what I imagined.&nbsp;</span><br />
+<span style="font-size: 20pt;">STLs/MouthPieceAdaptor.stl is a 3d-printable mouthpiece.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h3 style="font-size: 18pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> Get Help&nbsp;</h3>
+<span style="font-size: 20pt;">Contact Daniel Chin at <a href="mailto:nq285@nyu.edu">nq285@nyu.edu</a>&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<h2 style="font-size: 24pt; margin-top: 0; padding-top: 2pt; padding-bottom: 2pt; margin-bottom: 0; font-weight: bold;"> And...&nbsp;</h2><hr />
+<span style="font-size: 20pt;">Tristan and I would like to appreciate all who supported.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Thanks to Rudi for lending us the MPU6050.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Thanks to all user testers and all feedbacks.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Thanks to Nick, Tristan, and Leon for the suggestions.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">Thanks to Marcela for the project guidance and all the lectures.&nbsp;</span><br />
+<span style="font-size: 20pt;">&nbsp;</span><br />
+<span style="font-size: 20pt;">All gifs are hosted on Giphy. Those with people's faces are set as private CORS.&nbsp;</span><br />
+</body></html>
