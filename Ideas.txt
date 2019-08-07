@@ -34,3 +34,13 @@ card swiping game
 	You control with card swipers. 
 	multi player. imagine cards say "jump", "move right", "halt"...
 	unlock cards as you go?
+
+"Mouse"
+	A mouse implemented by accelerometer and gyro
+	Levels in processing. 
+	Level 1: drag files
+	Level 2: cut the pizza. 
+		rotate the mouse to rotate the knife
+	Level 3: hold the gun. 
+		Initially the gun lies flat on the table and rotating the mouse only rotate the gun in the plane. 
+		you have to pick the mouse up from the table. 
